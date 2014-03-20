@@ -25,7 +25,7 @@
 #import "RPSlidingMenuCell.h"
 
 const CGFloat RPSlidingCellFeatureHeight = 328.0f;
-const CGFloat RPSlidingCellNormalHeight = 88.0f;
+const CGFloat RPSlidingCellNormalHeight = 100.0f;
 const CGFloat RPSlidingCellDetailTextPadding = 20.0f;
 const CGFloat RPSlidingMenuNormalImageCoverAlpha = 0.5f;
 const CGFloat RPSlidingMenuFeaturedImageCoverAlpha = 0.2f;

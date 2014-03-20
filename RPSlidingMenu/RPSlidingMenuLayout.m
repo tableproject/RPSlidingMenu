@@ -50,7 +50,7 @@ NSInteger const RPSlidingCellDragInterval = 180.0f;
     NSIndexPath *indexPath;
 
     // last rect will be used to calculate frames past the first one.  We initialize it to a non junk 0 value
-    CGRect lastRect = CGRectMake(0.0F, 0.0F, screenWidth, RPSlidingCellNormalHeight);
+    CGRect lastRect = CGRectMake(0.0f, 0.0f, screenWidth, RPSlidingCellNormalHeight);
     NSInteger numItems = [self.collectionView numberOfItemsInSection:0];
 
     for(NSInteger itemIndex = 0; itemIndex < numItems; itemIndex++){
@@ -62,7 +62,7 @@ NSInteger const RPSlidingCellDragInterval = 180.0f;
 
         if (indexPath.row == topFeatureIndex){
             // our top feature cell
-            CGFloat yOffset = RPSlidingCellNormalHeight  *topCellsInterpolation;
+            CGFloat yOffset = RPSlidingCellNormalHeight * topCellsInterpolation;
             yValue = self.collectionView.contentOffset.y - yOffset;
             attributes.frame = CGRectMake(0.0f, yValue , screenWidth, RPSlidingCellFeatureHeight);
         }else if (indexPath.row == (topFeatureIndex + 1) && indexPath.row != numItems){
@@ -113,10 +113,8 @@ NSInteger const RPSlidingCellDragInterval = 180.0f;
 
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity{
 
-    return proposedContentOffset;
-    
     // so when a person stops dragging/flicking - we use the drag interval to determine where it will snap to
-    CGFloat currentY = self.collectionView.contentOffset.y;
+    CGFloat currentY = proposedContentOffset.y; // self.collectionView.contentOffset.y;
     // the marker of the next drag/page intervals
     CGFloat lastPageY =   (NSInteger)(currentY /  RPSlidingCellDragInterval) * RPSlidingCellDragInterval;
     CGFloat nextPageY =   lastPageY + RPSlidingCellDragInterval;
