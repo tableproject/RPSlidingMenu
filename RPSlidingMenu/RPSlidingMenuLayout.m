@@ -115,10 +115,16 @@ NSInteger const RPSlidingCellDragInterval = 180.0f;
 
     // so when a person stops dragging/flicking - we use the drag interval to determine where it will snap to
     CGFloat currentY = proposedContentOffset.y; // self.collectionView.contentOffset.y;
-    // the marker of the next drag/page intervals
-    CGFloat lastPageY =   (NSInteger)(currentY /  RPSlidingCellDragInterval) * RPSlidingCellDragInterval;
-    CGFloat nextPageY =   lastPageY + RPSlidingCellDragInterval;
 
+    // the marker of the next drag/page intervals
+    NSInteger   numberOfItems   = [self.collectionView numberOfItemsInSection:0];
+    NSInteger   currentIndex    = currentY /  RPSlidingCellDragInterval;
+
+    currentIndex = MIN(currentIndex, numberOfItems - 2);
+
+    CGFloat     lastPageY       = currentIndex * RPSlidingCellDragInterval;
+    CGFloat     nextPageY       = lastPageY + RPSlidingCellDragInterval;
+    
     // snap to whichever is closest
     CGPoint restingPoint = CGPointMake(0.0f, 0.0f);
     if ((currentY - lastPageY) < (nextPageY - currentY)){
